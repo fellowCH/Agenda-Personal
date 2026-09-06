@@ -1,33 +1,34 @@
 package agenda_personal;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author bonil
  */
 public class AgregarEventos {
-    int indicadorHora = 0;
-    int indice = 0;
-    //Array que almacena los objetos osea los eventos
-    public evento[] actividades = new evento[24]; 
+    //array que reprecenta el dia y almacenara los objetos, osea los eventos
+    public GestionEventos[] actividades = new GestionEventos[24]; 
    
-    //Creando el arrego que guardara los eventos de un dia.
-    public void agregarEvento(evento actividad){
+    //Creando el metodo que asignara eventos al horrario
+    public void agregarEvento(GestionEventos actividad){
+        /*La idea es utilizar la hora obtenida en el GestionEventos 
+        para colocar el elemento en el mismo lugar dentro del arreglo*/
         actividades[actividad.getHora()] = actividad;
-    }//end evento
+    }//end GestionEventos
     
-
-//for imprimira en pantalla el contenido del arreglo
+    //Este metodo mostrara en pantalla toda el horario del dia.
     public void mostrarAgenda(){
-    for (int hora = 0; hora < actividades.length; hora++){
-     if (actividades[hora] == null){
-         System.out.println(hora+":00 - Sin actiivdad.");
-     }
-     else{
-         System.out.println(hora+":00 - "+actividades[hora]);}//end else
-}//end for
+        //for imprimira en pantalla el contenido del arreglo osea toda la agenda
+        for (int hora = 0; hora < actividades.length; hora++){
+            //el if esta disenado para identificar los espacios diferentes a null osea los indices que si esten llenos 
+            if (actividades[hora] != null){
+                System.out.printf("%d:00 - ", hora);
+                /*se hace referencia al objeto gaurdado en el espacio indicado por el indice 
+                y el metodo en la clase gestion eventos lo imrpime*/
+                actividades[hora].salidaEvento();
+            }//end if
+            //este else controlara que aparezca null, se vera mas estetico
+            else{
+                System.out.printf("%d:00 - Sin actiivdad.\n", hora);
+                }//end else
+        }//end for
     }//end mostrar Agenda
 }//end class
