@@ -16,7 +16,8 @@ public class Agenda_Personal {
         // TODO code application logic here
     Scanner sc = new Scanner(System.in);
 
-                // Variables
+                // Variables;
+                int indice = 0;
                 int opcion = 0;
                 String nombreEvento = "Aquiles";
                 int horaEvento = 0;
@@ -70,6 +71,25 @@ public class Agenda_Personal {
 
                         case 3:
                             
+                            
+                            System.out.println("Elija una hora para la actividad que quiere eliminar (0-23): ");
+                                horaEvento = sc.nextInt(); // toma la hora de evento
+                                
+                                if(horaEvento >= 0 && horaEvento <= 23){ //valida que siempre este dentro del rango de 0 a 23
+                                    
+                                    System.out.println("Eventos en esta hora:");
+                                    
+                                    agendaDia.mostrarEventosPorHora(horaEvento); //agendaDia llama a mostrar evento y la hora de evento funciona para que funciona el evento mostrar por hora
+
+                                    
+                                    System.out.println("Ingrese el numero del evento que desea eliminar: ");
+                                    
+                                    sc.nextInt();
+                                    agendaDia.eliminarEvento(horaEvento, indice); //lo mismo que mostrar eventos pero usando indice para escoger el indice del array.
+
+                                } else {
+                                    System.out.println("Hora invalida.");
+                                }
                             break;
                             
                         case 4:

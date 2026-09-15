@@ -48,7 +48,21 @@ public class AgregarEventos {
                 
                 
         } // fin de for
-        
-        
+              
     }//end mostrar Agenda
+    
+    public void eliminarEvento(int hora, int indice){ //las variables hora e indice funcionan para cuando vayamos a ingresar los datos que pide desde el main
+    
+        actividades[hora].remove(indice); 
+    
+    }
+    
+    public void mostrarEventosPorHora(int hora) { // este funciona ara motrar que eventos hay por cada hora sin necesidad de llamar al evento mostraragenda.
+
+        for (int i = 0; i < actividades[hora].size(); i++) {  //aqui toma la array actividades y mediante la variable y el numero que se ingrese buscara todas las coincidencias con esa hora
+            System.out.print(i + ". ");  
+            actividades[hora].get(i).salidaEvento();
+        }
+    }
+    
 }//end class
