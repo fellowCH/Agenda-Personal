@@ -21,5 +21,5 @@ public class GestionEventos {
     public int getHora(){
        return horaEvento;
     }//end metodo hora
-    }//en to String
-//}//end class
+
+}//end class

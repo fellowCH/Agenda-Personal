@@ -1,34 +1,54 @@
 package agenda_personal;
-/**
- *
- * @author bonil
- */
+
+import java.util.ArrayList;
+
 public class AgregarEventos {
-    //array que reprecenta el dia y almacenara los objetos, osea los eventos
-    public GestionEventos[] actividades = new GestionEventos[24]; 
+    //array que reprecenta el dia y almacenara los objetos, osea los eventos.
+    //Aqui modifique el arraylist importanto el java util para mejorar la gestion.
+    public ArrayList<GestionEventos>[] actividades = new ArrayList[24];
    
     //Creando el metodo que asignara eventos al horrario
-    public void agregarEvento(GestionEventos actividad){
-        /*La idea es utilizar la hora obtenida en el GestionEventos 
-        para colocar el elemento en el mismo lugar dentro del arreglo*/
-        actividades[actividad.getHora()] = actividad;
-    }//end GestionEventos
+    public AgregarEventos(){ // aqui lo actualice para que ya aceptara las 24 horas
+        
+        for (int i = 0; i < 24; i++){
+            
+            actividades[i] = new ArrayList<>();
+            
+        } // fin del for
+        
+    } // fin del agregareventos
+    
+    public void agregarEvento (GestionEventos actividad){ // funcion para agregar
+        
+        actividades[actividad.getHora()].add(actividad);
+        
+    }
     
     //Este metodo mostrara en pantalla toda el horario del dia.
     public void mostrarAgenda(){
-        //for imprimira en pantalla el contenido del arreglo osea toda la agenda
-        for (int hora = 0; hora < actividades.length; hora++){
-            //el if esta disenado para identificar los espacios diferentes a null osea los indices que si esten llenos 
-            if (actividades[hora] != null){
-                System.out.printf("%d:00 - ", hora);
-                /*se hace referencia al objeto gaurdado en el espacio indicado por el indice 
-                y el metodo en la clase gestion eventos lo imrpime*/
-                actividades[hora].salidaEvento();
-            }//end if
-            //este else controlara que aparezca null, se vera mas estetico
-            else{
-                System.out.printf("%d:00 - Sin actiivdad.\n", hora);
-                }//end else
-        }//end for
+        
+        for (int hora = 0; hora < actividades.length; hora++) { 
+            
+            if(!actividades[hora].isEmpty()){ // aqui aproveche el extra que tiene el import para que verifique si la lista de esta hora no esta vacia. Por eso esta el ! y el isEmpty
+                
+                System.out.printf("%d:00 -\n", hora);
+                
+                for (GestionEventos ev : actividades[hora]){ //este es un bucle for each, lo que hace es que recorre todos los eventos guardados de esa hora. ev o evento es la variable temporal
+                    
+                    System.out.println("    ->  ");
+                    ev.salidaEvento(); // aqui imprime el evento usando la variable ev
+                }
+                               
+                
+            } else {
+                // el else ya es para que dicte que no hay ninguna actividad pendiente
+                System.out.printf("%d:00 no hay actividades pendientes...\n", hora);
+                
+            }// fin del if
+                
+                
+        } // fin de for
+        
+        
     }//end mostrar Agenda
 }//end class
