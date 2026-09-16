@@ -64,5 +64,5 @@ public class AgregarEventos {
             actividades[hora].get(i).salidaEvento();
         }
     }
-    
+    // Prueba de push y pull. Push de computadora TR y el pull sera en computadora PR
 }//end class
