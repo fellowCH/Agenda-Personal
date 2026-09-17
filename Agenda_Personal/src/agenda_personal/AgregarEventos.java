@@ -31,12 +31,12 @@ public class AgregarEventos {
             
             if(!actividades[hora].isEmpty()){ // aqui aproveche el extra que tiene el import para que verifique si la lista de esta hora no esta vacia. Por eso esta el ! y el isEmpty
                 
-                System.out.printf("%d:00 -\n", hora);
+                System.out.printf("%d:00 ****Eventos para esta hora****\n", hora);
                 
                 for (GestionEventos ev : actividades[hora]){ //este es un bucle for each, lo que hace es que recorre todos los eventos guardados de esa hora. ev o evento es la variable temporal
                     
-                    System.out.println("    ->  ");
-                    ev.salidaEvento(); // aqui imprime el evento usando la variable ev
+                    System.out.print("\t---> ");
+                    ev.salidaEvento(); // aqui imprime el evento usando la variable ev 
                 }
                                
                 
