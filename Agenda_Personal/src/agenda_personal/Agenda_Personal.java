@@ -65,7 +65,39 @@ public class Agenda_Personal {
                             
                             break;
 
-                        case 2:
+                        case 2: //este case es tecnicamente el mismo que el 3, lo unica que cambia es la funcion que agregue de editarEvento.
+                            
+                            System.out.println("Elija una hora para la actividad que quiere editar (0-23): ");
+                            horaEvento = sc.nextInt();
+                            if(horaEvento >= 0 && horaEvento <= 23){ //valida que siempre este dentro del rango de 0 a 23
+                                    
+                                    System.out.println("Eventos en esta hora:");
+                                    
+                                    agendaDia.mostrarEventosPorHora(horaEvento); 
+
+                                    
+                                    System.out.println("Ingrese el numero del evento que desea editar: ");  
+                                    indice = sc.nextInt(); 
+                                    
+                                    sc.nextLine();
+                                    
+                                    System.out.println("Nombre del nuevo evento: ");
+                                    nombreEvento = sc.nextLine();
+                                    
+                                                                        
+                                    agendaDia.editarEvento(horaEvento, indice, nombreEvento); 
+                                    
+                                    /* Explicacion de editarEvento
+                                    la variable horaEvento dentro de los parametros de editarEvento se conseguis desde la linea de codigo 71
+                                    la variable indice se consegui de la linea de codigo 80
+                                    la variable nombreEvento desde la linea 85.                                  
+                                    
+                                    */
+                                    System.out.println("Nombre cambiado con exito. ");
+                                    
+                                } else {
+                                    System.out.println("Hora invalida.");
+                                }
                             
                             break;
 
