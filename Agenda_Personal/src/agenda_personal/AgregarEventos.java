@@ -69,7 +69,7 @@ public class AgregarEventos {
         
         GestionEventos actividad = new GestionEventos(nombreEvento, hora); 
         actividades[hora].set(indice, actividad); //aqui tomamos la misma formula que en agregar pero cambiando por un set en lugar de un add
-                
+        
     } // fin de editarEvento
     
 }//end class

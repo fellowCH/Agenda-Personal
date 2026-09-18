@@ -45,10 +45,10 @@ public class Agenda_Personal {
                     // este ya es el switch normal
                     switch (opcion) {
                         case 1:
-                            System.out.println("Ingrese el nombre del evento: ");
+                            System.out.print("Ingrese el nombre del evento: ");
                             nombreEvento = sc.nextLine();
 
-                            System.out.println("Ingrese la hora del evento (0-23): ");
+                            System.out.print("Ingrese la hora del evento (0-23): ");
                             horaEvento = sc.nextInt(); 
                             sc.nextLine();
 
@@ -104,7 +104,7 @@ public class Agenda_Personal {
                         case 3:
                             
                             
-                            System.out.println("Elija una hora para la actividad que quiere eliminar (0-23): ");
+                            System.out.print("Elija una hora para la actividad que quiere eliminar (0-23): ");
                                 horaEvento = sc.nextInt(); // toma la hora de evento
                                 
                                 if(horaEvento >= 0 && horaEvento <= 23){ //valida que siempre este dentro del rango de 0 a 23
@@ -136,7 +136,7 @@ public class Agenda_Personal {
                             break;
                             
                         default:
-                            System.out.println("Opción fuera de rango (debe ser 1, 2 o 3)."); // verifica que siempre este dentro del rango de opciones
+                            System.out.println("Opcion fuera de rango (debe ser 1, 2, 3, 4 o 5)."); // verifica que siempre este dentro del rango de opciones
                             break;
                     }
 
@@ -149,7 +149,7 @@ public class Agenda_Personal {
 
             } while (opcion != 5); // fin del do while
            
-
+         
     } // fin del main
     
 } // fin del class
