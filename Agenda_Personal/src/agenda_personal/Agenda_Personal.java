@@ -29,6 +29,7 @@ public class Agenda_Personal {
             do {
                 System.out.println("\nAgenda Personal");
                 System.out.println("------------------");
+                System.out.println("0. Indicadores");
                 System.out.println("1. Anadir evento");
                 System.out.println("2. Indicadores");
                 System.out.println("3. Editar evento");
@@ -47,31 +48,10 @@ public class Agenda_Personal {
 
                     // este ya es el switch normal
                     switch (opcion) {
-                        case 1:
-                            System.out.println("Ingrese el nombre del evento: ");
-                            nombreEvento = sc.nextLine();
-
-                            System.out.println("Ingrese la hora del evento (0-23): ");
-                            horaEvento = sc.nextInt(); 
-                            sc.nextLine();
-
-                            if(horaEvento >= 0 && horaEvento <= 23){
-                                
-                                GestionEventos actividad = new GestionEventos(nombreEvento, horaEvento);
-                                agendaDia.agregarEvento(actividad); // aqui la variable agendaDia llama a la funcion agregar evento del archivo AgregarEventos
-                                System.out.println("Actividad guardada correctamente.");        
-                                                                    
-                            } else { 
-                                System.out.println("Error: La hora debe estar entre 0 y 23.");
-                            } // fin del if
-                            
-                            
-                            break;
-
-                        case 2://crear indicador y establecer meta 
+                        case 0: //crear indicador y establecer meta 
                             char opcionIndicador = 'g';
                               do {
-                                 System.out.println("a. Anadir indicador ");
+                            System.out.println("a. Anadir indicador ");
                             System.out.println("b. Eliminar indicador ");
                             System.out.println("c. Visualizar progreso ");
                                 opcionIndicador = sc.nextLine().toLowerCase().charAt(0);
@@ -103,6 +83,28 @@ public class Agenda_Personal {
                             }//end switch 
                                 
                             } while (opcionIndicador != 'd');
+                        case 1:
+                            System.out.println("Ingrese el nombre del evento: ");
+                            nombreEvento = sc.nextLine();
+
+                            System.out.println("Ingrese la hora del evento (0-23): ");
+                            horaEvento = sc.nextInt(); 
+                            sc.nextLine();
+
+                            if(horaEvento >= 0 && horaEvento <= 23){
+                                
+                                GestionEventos actividad = new GestionEventos(nombreEvento, horaEvento);
+                                agendaDia.agregarEvento(actividad); // aqui la variable agendaDia llama a la funcion agregar evento del archivo AgregarEventos
+                                System.out.println("Actividad guardada correctamente.");        
+                                                                    
+                            } else { 
+                                System.out.println("Error: La hora debe estar entre 0 y 23.");
+                            } // fin del if
+                            
+                            
+                            break;
+
+                        case 2:
                             break;
                             
                         case 3:
