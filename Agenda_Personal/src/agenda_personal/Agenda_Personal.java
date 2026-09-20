@@ -23,19 +23,22 @@ public class Agenda_Personal {
                 int horaEvento = 0;
                 String fechaEvento = "Aquiles";
                 AgregarEventos agendaDia = new AgregarEventos(); //la variable agendaDia funciona para conectarla al indice del array y mediante este agenda dia llmamaos las funciones.
-                
+                Indicadores contenedorArrayList = new Indicadores ();
                 //el do lo coloque para validar que siempre colocara la opcion correcta para que no salga ningun error al colocar otro
                 //caracter que no sea int o un string
             do {
                 System.out.println("\nAgenda Personal");
                 System.out.println("------------------");
                 System.out.println("1. Anadir evento");
-                System.out.println("2. Editar evento");
-                System.out.println("3. Eliminar evento");
-                System.out.println("4. Mostrar agenda");
-                System.out.println("5. Salir");
+                System.out.println("2. Indicadores");
+                System.out.println("3. Editar evento");
+                System.out.println("4. Eliminar evento");
+                System.out.println("5. Mostrar agenda");
+                System.out.println("6. Salir");
                 System.out.println("------------------");
                 System.out.print("Ingrese el numero de la opcion que desea ejecutar: ");
+                
+               
 
                 // esta parte funciona para que valide que si ingreso un int, si tiene un int continua y no directamente corre la linea de codigo 71 a la 75.
                 if (sc.hasNextInt()) { //aqui valida directamente si tiene INTs
@@ -65,13 +68,50 @@ public class Agenda_Personal {
                             
                             break;
 
-                        case 2:
+                        case 2://crear indicador y establecer meta 
+                            char opcionIndicador = 'g';
+                              do {
+                                 System.out.println("a. Anadir indicador ");
+                            System.out.println("b. Eliminar indicador ");
+                            System.out.println("c. Visualizar progreso ");
+                                opcionIndicador = sc.nextLine().toLowerCase().charAt(0);
                             
+                            switch (opcionIndicador){
+                                case 'a':
+                                    String nombreIndicador = "d";
+                                    int metaIndicador = 0;
+                                    System.out.println("Ingrese el nombre del nuevo indicador: "); 
+                                        nombreIndicador = sc.nextLine();
+                                    System.out.println("Ingrese su meta para este indicador: "); 
+                                        metaIndicador = sc.nextInt();
+                                        sc.nextLine();
+                                        //anadir indicador 
+                                        Indicadores nuevoIndicador = new Indicadores (nombreIndicador, metaIndicador);
+                                        contenedorArrayList.GuardarIndicadores(nuevoIndicador);
+                                        
+                                    break; 
+                                case 'b':
+                                    
+                                    break; 
+                                case 'c': //
+                                    contenedorArrayList.VisualizarProgreso();
+                                    
+                                    break; 
+                                default:
+                                    break;
+                            
+                            }//end switch 
+                                
+                            } while (opcionIndicador != 'd');
                             break;
-
+                            
                         case 3:
                             
                             
+                            break;
+                            
+                        case 4:
+       
                             System.out.println("Elija una hora para la actividad que quiere eliminar (0-23): ");
                                 horaEvento = sc.nextInt(); // toma la hora de evento
                                 
@@ -92,13 +132,13 @@ public class Agenda_Personal {
                                 }
                             break;
                             
-                        case 4:
+                        case 5:
                             
                             System.out.println("--- Agenda del Dia ---"); 
                             agendaDia.mostrarAgenda();  //este llama ala funcion mostrarAgenda                           
                             break;
                             
-                        case 5: 
+                        case 6: 
                             
                             System.out.println("Saliendo de la agenda..."); //esta funciona para salir del case e iniciar de vuelta
                             break;
@@ -115,10 +155,11 @@ public class Agenda_Personal {
                     sc.nextLine(); 
                 }
 
-            } while (opcion != 5); // fin del do while
+            } while (opcion != 6); // fin del do while
            
+// fin del main
 
-    } // fin del main
     
 } // fin del class
+}
 
