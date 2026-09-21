@@ -35,7 +35,8 @@ public class Agenda_Personal {
                 System.out.println("2. Editar evento");
                 System.out.println("3. Eliminar evento");
                 System.out.println("4. Mostrar agenda");
-                System.out.println("5. Salir");
+                System.out.println("5. Instrucciones de uso");
+                System.out.println("6. Salir");
                 System.out.println("------------------");
                 System.out.print("Ingrese el numero de la opcion que desea ejecutar: ");
  
@@ -138,8 +139,7 @@ public class Agenda_Personal {
                                     agendaDia.mostrarEventosPorHora(horaEvento); 
 
                                     
-                                    System.out.println("Ingrese el numero del evento que desea editar: ");  
-                                    indice = sc.nextInt(); 
+                                    indice = ValidacionNumero(sc, "Ingrese el numero del evento que desea editar: ");
                                     
                                     sc.nextLine();
                                     
@@ -197,14 +197,40 @@ public class Agenda_Personal {
                             agendaDia.mostrarAgenda();  //este llama ala funcion mostrarAgenda                           
                             break;
                             
-                        case 5: 
-                            
-                            System.out.println("Saliendo de la agenda..."); //esta funciona para salir del case e iniciar de vuelta
+                        case 5:
+                            System.out.println("\n=== INSTRUCCIONES DE USO DE LA AGENDA PERSONAL ===");
+                            System.out.println("1. OPCION 0 - INDICADORES (METAS):");
+                            System.out.println("   - Permite crear metas diarias (maximo 4 por dia).");
+                            System.out.println("   - Asigna un nombre y un numero entero como meta.");
+                            System.out.println("   - Consulta tu avance en 'Visualizar progreso'.");
+                            System.out.println();
+                            System.out.println("2. OPCION 1 - ANADIR EVENTO:");
+                            System.out.println("   - Solicita el nombre de la actividad y la hora (0 a 23).");
+                            System.out.println("   - Si existen indicadores, permite vincular la actividad a uno.");
+                            System.out.println();
+                            System.out.println("3. OPCION 2 - EDITAR EVENTO:");
+                            System.out.println("   - Ingresa la hora y el numero de indice del evento.");
+                            System.out.println("   - Escribe el nuevo nombre para actualizar la actividad.");
+                            System.out.println();
+                            System.out.println("4. OPCION 3 - ELIMINAR EVENTO:");
+                            System.out.println("   - Ingresa la hora y el indice del evento para borrarlo.");
+                            System.out.println();
+                            System.out.println("5. OPCION 4 - MOSTRAR AGENDA:");
+                            System.out.println("   - Muestra el horario completo del dia con sus actividades.");
+                            System.out.println();
+                            System.out.println("6. CONVENCIONES DE ESTADO:");
+                            System.out.println("   - [ ] Indica actividad pendiente.");
+                            System.out.println("   - [X] Indica actividad completada.");
+                            System.out.println("==================================================");
+                            break;
+
+                        case 6:
+                            System.out.println("Saliendo de la agenda...");
                             break;
                             
                         default:
-                            System.out.println("Opcion fuera de rango (debe ser 0, 1, 2, 3, 4 o 5)."); // verifica que siempre este dentro del rango de opciones
                             
+                            System.out.println("Opcion fuera de rango (debe ser 0, 1, 2, 3, 4, 5 o 6).");
                             break;
                     }
 
@@ -215,7 +241,7 @@ public class Agenda_Personal {
                     sc.nextLine(); 
                 }
 
-            } while (opcion != 5); // fin del do while  
+            } while (opcion != 6); // fin del do while  
 } // fin del main
     
     //funcion para ontrol de errores, evita que el programa se detenga por un valor que no sea un int y simplifica los print
