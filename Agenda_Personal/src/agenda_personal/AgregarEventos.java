@@ -31,12 +31,12 @@ public class AgregarEventos {
             
             if(!actividades[hora].isEmpty()){ // aqui aproveche el extra que tiene el import para que verifique si la lista de esta hora no esta vacia. Por eso esta el ! y el isEmpty
                 
-                System.out.printf("%d:00 -\n", hora);
+                System.out.printf("%d:00 ****Eventos para esta hora****\n", hora);
                 
                 for (GestionEventos ev : actividades[hora]){ //este es un bucle for each, lo que hace es que recorre todos los eventos guardados de esa hora. ev o evento es la variable temporal
                     
-                    System.out.println("    ->  ");
-                    ev.salidaEvento(); // aqui imprime el evento usando la variable ev
+                    System.out.print("\t---> ");
+                    ev.salidaEvento(); // aqui imprime el evento usando la variable ev 
                 }
                                
                 
@@ -51,18 +51,34 @@ public class AgregarEventos {
               
     }//end mostrar Agenda
     
-    public void eliminarEvento(int hora, int indice){ //las variables hora e indice funcionan para cuando vayamos a ingresar los datos que pide desde el main
+    public boolean eliminarEvento(int hora, int indice){ //las variables hora e indice funcionan para cuando vayamos a ingresar los datos que pide desde el main
+        //si el usuario ingrea un valor 5 cuando solo hay dos eventos en orden 0 y 1 la funcion indica que no se podido eliminar  
+        if (indice >= 0 && indice < actividades[hora].size()) {
+            actividades[hora].remove(indice);
+            return true;
+        }//en if
+        else {
+            return false;  
+        }//end else
+    } //fin de eliminar evento
     
-        actividades[hora].remove(indice); 
-    
-    }
+    public boolean hayEventos(int hora){//si el evento tiene almenos un evento, responde true, y false si esta vacia
+        return !actividades[hora].isEmpty();
+    }//end hayEventos
     
     public void mostrarEventosPorHora(int hora) { // este funciona ara motrar que eventos hay por cada hora sin necesidad de llamar al evento mostraragenda.
 
         for (int i = 0; i < actividades[hora].size(); i++) {  //aqui toma la array actividades y mediante la variable y el numero que se ingrese buscara todas las coincidencias con esa hora
             System.out.print(i + ". ");  
             actividades[hora].get(i).salidaEvento();
-        }
-    }
-    // Prueba de push y pull. Push de computadora TR y el pull sera en computadora PR
+        } //fin del if
+    } //fin de mostrar eventos por hora
+    
+    public void editarEvento(int hora, int indice, String nombreEvento){ 
+        
+        GestionEventos actividad = new GestionEventos(nombreEvento, hora); 
+        actividades[hora].set(indice, actividad); //aqui tomamos la misma formula que en agregar pero cambiando por un set en lugar de un add
+        
+    } // fin de editarEvento
+    
 }//end class
