@@ -51,11 +51,20 @@ public class AgregarEventos {
               
     }//end mostrar Agenda
     
-    public void eliminarEvento(int hora, int indice){ //las variables hora e indice funcionan para cuando vayamos a ingresar los datos que pide desde el main
-    
-        actividades[hora].remove(indice); 
-    
+    public boolean eliminarEvento(int hora, int indice){ //las variables hora e indice funcionan para cuando vayamos a ingresar los datos que pide desde el main
+        //si el usuario ingrea un valor 5 cuando solo hay dos eventos en orden 0 y 1 la funcion indica que no se podido eliminar  
+        if (indice >= 0 && indice < actividades[hora].size()) {
+            actividades[hora].remove(indice);
+            return true;
+        }//en if
+        else {
+            return false;  
+        }//end else
     } //fin de eliminar evento
+    
+    public boolean hayEventos(int hora){//si el evento tiene almenos un evento, responde true, y false si esta vacia
+        return !actividades[hora].isEmpty();
+    }//end hayEventos
     
     public void mostrarEventosPorHora(int hora) { // este funciona ara motrar que eventos hay por cada hora sin necesidad de llamar al evento mostraragenda.
 
@@ -67,9 +76,23 @@ public class AgregarEventos {
     
     public void editarEvento(int hora, int indice, String nombreEvento){ 
         
-        GestionEventos actividad = new GestionEventos(nombreEvento, hora); 
-        actividades[hora].set(indice, actividad); //aqui tomamos la misma formula que en agregar pero cambiando por un set en lugar de un add
+        Indicador indAntiguo = actividades[hora].get(indice).getIndicador();
+
+
+        GestionEventos actividad = new GestionEventos(nombreEvento, hora, indAntiguo); 
+
+ 
+        actividades[hora].set(indice, actividad);
         
     } // fin de editarEvento
+    
+    public GestionEventos obtenerEvento(int hora, int indice){//ayuda a manipular la lsita desde main 
+        if (indice >= 0 && indice < actividades[hora].size()) {//seguro contra errores, si el numero noexiste devuelve null pero no finaliza el programa
+         return actividades[hora].get(indice);
+         }//end if
+        else {
+        return null;
+    }//end else
+}//end obtener Evento
     
 }//end class
