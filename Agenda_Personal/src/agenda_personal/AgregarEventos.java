@@ -86,4 +86,13 @@ public class AgregarEventos {
         
     } // fin de editarEvento
     
+    public GestionEventos obtenerEvento(int hora, int indice){//ayuda a manipular la lsita desde main 
+        if (indice >= 0 && indice < actividades[hora].size()) {//seguro contra errores, si el numero noexiste devuelve null pero no finaliza el programa
+         return actividades[hora].get(indice);
+         }//end if
+        else {
+        return null;
+    }//end else
+}//end obtener Evento
+    
 }//end class

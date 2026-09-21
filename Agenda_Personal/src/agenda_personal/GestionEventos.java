@@ -69,4 +69,7 @@ public class GestionEventos {
     public boolean isCompletado(){
         return completado;
     }//end isCompletado
+    public void setNombre(String nuevoNombre){//nuevo nombre no se puede cambair sin set 
+    nombreEvento = nuevoNombre;
+    }
 }//end class

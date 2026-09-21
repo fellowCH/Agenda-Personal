@@ -130,38 +130,84 @@ public class Agenda_Personal {
                             break;
 
                         case 2: //este case es tecnicamente el mismo que el 3, lo unica que cambia es la funcion que agregue de editarEvento.
-                            //System.out.println("Elija una hora para la actividad que quiere editar (0-23): ");
-                            horaEvento = ValidacionNumero(sc, "Elija una hora para la actividad que quiere editar (0-23): ");
-                            if(horaEvento >= 0 && horaEvento <= 23){ //valida que siempre este dentro del rango de 0 a 23
-                                    
-                                    System.out.println("Eventos en esta hora:");
-                                    
-                                    agendaDia.mostrarEventosPorHora(horaEvento); 
+                             //validacion dle numero entero, sino seguira hasta introducir valor correcto 
+                            horaEvento = ValidacionNumero(sc, "Elija una hora para la actividad que quiere editar (0-23): ");//lee y valida mediante la funcion el numero correcto
 
-                                    
-                                    indice = ValidacionNumero(sc, "Ingrese el numero del evento que desea editar: ");
-                                    
-                                    sc.nextLine();
-                                    
-                                    System.out.println("Nombre del nuevo evento: ");
-                                    nombreEvento = sc.nextLine();
-                                    
-                                                                        
-                                    agendaDia.editarEvento(horaEvento, indice, nombreEvento); 
-                                    
-                                    /* Explicacion de editarEvento
-                                    la variable horaEvento dentro de los parametros de editarEvento se conseguis desde la linea de codigo 71
-                                    la variable indice se consegui de la linea de codigo 80
-                                    la variable nombreEvento desde la linea 85.                                  
-                                    
-                                    */
-                                    System.out.println("Nombre cambiado con exito. ");
-                                    
-                                } else {
+                            if (horaEvento >= 0 && horaEvento <= 23) {//validacion de que la hora este dentro del rango 
+
+                                if (agendaDia.hayEventos(horaEvento)) {//si hay un evento devolvera true, es para no editar algun elemento existente
+                                    System.out.println("Eventos en esta hora:");
+                                    agendaDia.mostrarEventosPorHora(horaEvento);//muestra los eventos de esa hora para saber ucal escoger 
+
+                                    indice = ValidacionNumero(sc, "Ingrese el numero del evento que desea editar: ");//pide el numero del evento igualmente tiene un validador luego lo gaurda en indice 
+                                    GestionEventos eventoElegido = agendaDia.obtenerEvento(horaEvento, indice);//si existe une vento en ese indice lo entrega, sino devuelve null 
+
+                                    if (eventoElegido != null) {//protector de error para validar que el evento si exista y el programa no se cierre de no ser asi 
+                                        System.out.println("a. Cambiar nombre");
+                                        System.out.println("b. Marcar como completado");
+                                        System.out.println("c. Marcar como NO completado");
+                                        System.out.println("d. Cancelar");
+                                        System.out.print("Elija una opcion: ");
+
+                                        String textoEdicion = sc.nextLine().toLowerCase();
+                                        char opcionEdicion = 'x';// si no se escirbe nada esto protege para que quede como invalido y no se cierre el programa
+
+                                        if (textoEdicion.length() > 0) {//valida que no este en cero para no cerrarce
+                                            opcionEdicion = textoEdicion.charAt(0);
+                                        }//end if
+
+                                        if (opcionEdicion == 'a') {
+                                            System.out.println("Nombre del nuevo evento: ");
+                                            nombreEvento = sc.nextLine();
+                                            //camvia el nombre del mismo evento el indicador y el estado permanecen intactos 
+                                            eventoElegido.setNombre(nombreEvento);
+                                            System.out.println("Nombre cambiado con exito.");
+
+                                        } //end if
+                                        //marca como completado o no completado 
+                                        else if (opcionEdicion == 'b' || opcionEdicion == 'c') {
+
+                                            eventoElegido.marcarCompletado(opcionEdicion == 'b');//si el estado cambia sube o baja el indicador, solo si el estado se camvia si sleciono b es true y c es false
+
+                                            if (opcionEdicion == 'b') {
+                                                System.out.println("Evento marcado como completado.");
+                                            }//end if
+                                            else {
+                                                System.out.println("Evento marcado como NO completado.");
+                                            }//end else
+
+                                            Indicador indicadorDelEvento = eventoElegido.getIndicador();
+
+                                            if (indicadorDelEvento != null) {//solo se meustra el porgreso si el progreso tiene indicador 
+                                                System.out.printf("Progreso de %s: %d/%d\n",
+                                                        indicadorDelEvento.getNombreIndicador(),
+                                                        indicadorDelEvento.getProgresoIndicador(),
+                                                        indicadorDelEvento.getMetaIndicador());
+
+                                                if (indicadorDelEvento.metaAlcanzada()) {//se encarga de avisar que la meta se a alcanzado
+                                                    System.out.println("Meta alcanzada");
+                                                }//end if
+                                            }//end if
+
+                                        }//end else if 
+                                        else if (opcionEdicion != 'd') {//asegura validar la entrada, un valor que no sea a, b, c, d es invalido 
+                                            System.out.println("Opcion invalida.");
+                                        }//end else if
+                                        else {//devolvio null, el numero no existe
+                                            System.out.println("Numero de evento invalido.");
+                                        } //end else 
+
+                                    }//end if
+                                    else {//la hora no tiene eventos
+                                        System.out.println("No hay eventos en esa hora.");
+                                    }//end else
+
+                                }// end if
+                                else {//la hora no esta entre 0-23
                                     System.out.println("Hora invalida.");
-                                }
-                            
-                            break;
+                                }//end else
+                            }
+                                break;
 
                         case 3://error de finalizar al seleccionar un evento que no existe y corregir validacion de evento existente
                                //System.out.println("Elija una hora para la actividad que quiere eliminar (0-23): ");
