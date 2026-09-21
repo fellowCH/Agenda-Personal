@@ -66,6 +66,15 @@ public class AgregarEventos {
         return !actividades[hora].isEmpty();
     }//end hayEventos
     
+     public GestionEventos obtenerEvento(int hora, int indice){//ayuda a manipular la lsita desde main 
+    if (indice >= 0 && indice < actividades[hora].size()) {//seguro contra errores, si el numero noexiste devuelve null pero no finaliza el programa
+        return actividades[hora].get(indice);
+    }//end if
+    else {
+        return null;
+    }//end else
+}//end obtener Evento
+    
     public void mostrarEventosPorHora(int hora) { // este funciona ara motrar que eventos hay por cada hora sin necesidad de llamar al evento mostraragenda.
 
         for (int i = 0; i < actividades[hora].size(); i++) {  //aqui toma la array actividades y mediante la variable y el numero que se ingrese buscara todas las coincidencias con esa hora
@@ -74,11 +83,14 @@ public class AgregarEventos {
         } //fin del if
     } //fin de mostrar eventos por hora
     
-    public void editarEvento(int hora, int indice, String nombreEvento){ 
+    //public void editarEvento(int hora, int indice, String nombreEvento){ 
         
-        GestionEventos actividad = new GestionEventos(nombreEvento, hora); 
-        actividades[hora].set(indice, actividad); //aqui tomamos la misma formula que en agregar pero cambiando por un set en lugar de un add
+        ///GestionEventos actividad = new GestionEventos(nombreEvento, hora); 
+        //actividades[hora].set(indice, actividad); //aqui tomamos la misma formula que en agregar pero cambiando por un set en lugar de un add
         
-    } // fin de editarEvento
     
+        
+    //} // fin de editarEvento
+    
+   
 }//end class
